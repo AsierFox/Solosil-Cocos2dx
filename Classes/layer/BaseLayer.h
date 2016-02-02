@@ -11,11 +11,14 @@ protected:
 	float elapsedTime;
 
 public:
+	BaseLayer();
+	~BaseLayer();
+
 	virtual bool init() = 0;
 	virtual void onEnter() = 0;
 	void update(float) override = 0;
 	virtual void onExit() = 0;
-	virtual void cleanup() = 0;
+	virtual void cleanup();
 };
 
 #endif // __BASE_LAYER_H__

@@ -8,6 +8,7 @@ static cocos2d::Size mediumResolutionSize = cocos2d::Size(1024, 768);
 static cocos2d::Size largeResolutionSize = cocos2d::Size(2048, 1536);
 
 const std::string AppDelegate::APP_NAME = "Solosil";
+const float AppDelegate::FPS = 60.0f;
 
 AppDelegate::AppDelegate() {}
 
@@ -40,11 +41,13 @@ bool AppDelegate::applicationDidFinishLaunching() {
         director->setOpenGLView(glview);
     }
 
-    // turn on display FPS
-    director->setDisplayStats(true);
+#ifndef NDEBUG
+	// turn on display FPS
+	director->setDisplayStats(true);
+#endif // !NDEBUG
 
     // set FPS. the default value is 1.0/60 if you don't call this
-    director->setAnimationInterval(1.0 / 60);
+    director->setAnimationInterval(1.0 / FPS);
 
     // Set the design resolution
     glview->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, ResolutionPolicy::NO_BORDER);

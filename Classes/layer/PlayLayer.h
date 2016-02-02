@@ -1,11 +1,18 @@
-#ifndef  __MAIN_MENU_LAYER_H__
-#define  __MAIN_MENU_LAYER_H__
+#ifndef __PLAY_LAYER_H__
+#define __PLAY_LAYER_H__
 
 #include "cocos2d.h"
 
 #include "BaseLayer.h"
 
-class MainMenuLayer : public BaseLayer {
+#include "../manager/LevelManager.h"
+
+#include "../level/BaseLevel.h"
+#include "../level/Level1.h"
+
+class PlayLayer : public BaseLayer {
+
+	LevelManager levelManager;
 
 public:
 
@@ -15,12 +22,10 @@ public:
 	virtual void onExit();
 	virtual void cleanup();
 
-	void menuCloseCallback(cocos2d::Ref* pSender);
-
 	static cocos2d::Scene* createScene();
-
+	
 	// implement the "static create()" method manually
-	CREATE_FUNC(MainMenuLayer);
+	CREATE_FUNC(PlayLayer);
 };
 
-#endif // __MAIN_MENU_LAYER_H__
+#endif // __PLAY_LAYER_H__

@@ -9,6 +9,7 @@
 class  AppDelegate : private cocos2d::Application {
 
 	static const std::string APP_NAME;
+	static const float FPS;
 
 public:
     AppDelegate();

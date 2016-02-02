@@ -8,11 +8,17 @@ bool SplashLayer::init() {
     }
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
-	audioManager.setEffect("splash_audio.mp3");
 	elapsedTime = .0f;
 
+#ifndef NDEBUG
+	// If debug skip splash scene
+	sceneTimeLength = 0;
+#else
 	sceneTimeLength = 3;
+#endif // !NDEBUG
+
+	// Sound effect
+	audioManager.setEffect("splash_audio.mp3");
 
 	// Solosil sprite
 	solosilSprite = Sprite::create("img/solosil.png");
@@ -20,7 +26,7 @@ bool SplashLayer::init() {
 	addChild(solosilSprite);
 
 	scheduleUpdate();
-    return true;
+	return true;
 }
 
 void SplashLayer::onEnter() {
@@ -38,7 +44,7 @@ void SplashLayer::update(float delta) {
 	solosilSprite->runAction(Sequence::create(actions));
 	
 	elapsedTime += delta;
-
+	
 	if (elapsedTime >= sceneTimeLength) {
 		Director::getInstance()->replaceScene(MainMenuLayer::createScene());
 	}
@@ -51,12 +57,12 @@ void SplashLayer::onExit() {
 void SplashLayer::cleanup() {
 	solosilSprite->cleanup();
 
-	Layer::cleanup();
+	BaseLayer::cleanup();
 }
 
 Scene* SplashLayer::createScene() {
-	auto scene = Scene::create();
-	auto layer = SplashLayer::create();
+	Scene* scene = Scene::create();
+	SplashLayer* layer = SplashLayer::create();
 
 	scene->addChild(layer);
 

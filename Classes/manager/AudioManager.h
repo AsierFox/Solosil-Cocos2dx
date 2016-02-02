@@ -5,6 +5,7 @@
 #include "SimpleAudioEngine.h"
 
 class AudioManager {
+
 	static const std::string SOUND_DIR;
 
 	CocosDenshion::SimpleAudioEngine* audioEngine;
@@ -21,7 +22,6 @@ public:
 
 	void setBgMusic(std::string bgMusic);
 	void setEffect(std::string effect);
-
 };
 
 #endif // _AUDIO_MANAGER_H_
